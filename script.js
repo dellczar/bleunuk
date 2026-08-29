@@ -30,13 +30,13 @@ window.addEventListener('scroll', () => {
   nav.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,.35)' : '';
 }, { passive: true });
 
-// Booking form — basic submit handler
-document.getElementById('bookForm').addEventListener('submit', e => {
+// Booking form — Formspree AJAX submission
+document.getElementById('bookForm').addEventListener('submit', async e => {
   e.preventDefault();
   const form = e.target;
   const success = document.getElementById('formSuccess');
 
-  // Simple client-side required check
+  // Client-side required check
   const required = form.querySelectorAll('[required]');
   let valid = true;
   required.forEach(el => {
@@ -46,21 +46,38 @@ document.getElementById('bookForm').addEventListener('submit', e => {
       valid = false;
     }
   });
-
   if (!valid) return;
 
-  // Disable button while "sending"
   const btn = form.querySelector('.sub-btn');
   btn.textContent = 'Sending…';
   btn.disabled = true;
 
-  setTimeout(() => {
-    btn.textContent = 'Send Request';
-    btn.disabled = false;
-    form.reset();
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+
+    if (res.ok) {
+      form.reset();
+      success.hidden = false;
+      setTimeout(() => { success.hidden = true; }, 6000);
+    } else {
+      success.textContent = 'Something went wrong — please call us at (718) 210-2529.';
+      success.style.background = '#fdecea';
+      success.style.color = '#c62828';
+      success.hidden = false;
+    }
+  } catch {
+    success.textContent = 'Network error — please call us at (718) 210-2529.';
+    success.style.background = '#fdecea';
+    success.style.color = '#c62828';
     success.hidden = false;
-    setTimeout(() => { success.hidden = true; }, 5000);
-  }, 900);
+  }
+
+  btn.textContent = 'Send Request';
+  btn.disabled = false;
 });
 
 // Set date input min to today
@@ -68,4 +85,12 @@ const dateInput = document.getElementById('date');
 if (dateInput) {
   const today = new Date().toISOString().split('T')[0];
   dateInput.min = today;
+}
+
+// Graceful video hero — hide video element if file doesn't load
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+  heroVideo.addEventListener('error', () => {
+    heroVideo.style.display = 'none';
+  });
 }

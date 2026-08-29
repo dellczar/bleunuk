@@ -33,9 +33,13 @@
 
   <!-- HERO -->
   <section class="hero" id="home">
-    <div class="hero-bg">
-      <!-- Replace this div with <img src="hero-photo.jpg" alt="Bleu Nuk BK interior"> when photo is ready -->
-      <div class="hero-placeholder"></div>
+    <div class="hero-media">
+      <!-- Swap src with your actual video file when ready, e.g. images/hero.mp4 -->
+      <video class="hero-video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
+        <source src="images/hero.mp4" type="video/mp4">
+        <!-- Fallback image if video not available -->
+      </video>
+      <div class="hero-video-fallback"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content container">
@@ -46,6 +50,9 @@
         <a href="#book" class="btn-gold">Reserve a Table</a>
         <a href="#menu" class="btn-out">View Menu</a>
       </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span></span>
     </div>
   </section>
 
@@ -88,7 +95,7 @@
         </div>
       </div>
       <div class="about-img-wrap">
-        <!-- Replace with <img class="about-img" src="interior-photo.jpg" alt="Bleu Nuk BK Interior"> -->
+        <!-- Swap for real interior photo: <img class="about-img" src="images/interior.jpg" alt="Bleu Nuk BK Interior"> -->
         <div class="about-img about-img-placeholder">
           <div class="img-label">Interior Photo</div>
         </div>
@@ -106,78 +113,101 @@
       <div class="menu-grid">
 
         <div class="mc">
-          <!-- Replace with <img src="jerk-chicken.jpg" alt="Jerk Chicken Bowl"> -->
-          <div class="mc-img mc-img-placeholder">
-            <div class="img-label">Jerk Chicken Bowl</div>
-          </div>
+          <img class="mc-img" src="images/jerk-chicken-platter.jpg" alt="Jerk Chicken Platter" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Jerk Chicken Platter</div></div>
           <div class="mc-info">
             <div class="mc-tag">Signature</div>
-            <div class="mc-name">Jerk Chicken Bowl</div>
-            <div class="mc-desc">Slow-marinated, island spices</div>
+            <div class="mc-name">Jerk Chicken Platter</div>
+            <div class="mc-desc">Island spices, smoky &amp; bold</div>
             <div class="mc-price">$18</div>
           </div>
         </div>
 
         <div class="mc">
-          <!-- Replace with <img src="brunch-plate.jpg" alt="Island Brunch Plate"> -->
-          <div class="mc-img mc-img-placeholder">
-            <div class="img-label">Island Brunch Plate</div>
-          </div>
-          <div class="mc-info">
-            <div class="mc-tag">Weekend Brunch</div>
-            <div class="mc-name">Island Brunch Plate</div>
-            <div class="mc-desc">Red velvet waffles &amp; chicken</div>
-            <div class="mc-price">$16</div>
-          </div>
-        </div>
-
-        <div class="mc">
-          <!-- Replace with <img src="cocktails.jpg" alt="Craft Cocktails"> -->
-          <div class="mc-img mc-img-placeholder">
-            <div class="img-label">Craft Cocktails</div>
-          </div>
-          <div class="mc-info">
-            <div class="mc-tag">Bar Menu</div>
-            <div class="mc-name">Craft Cocktails</div>
-            <div class="mc-desc">Rum-forward island recipes</div>
-            <div class="mc-price">From $12</div>
-          </div>
-        </div>
-
-        <div class="mc">
-          <!-- Replace with <img src="coffee.jpg" alt="Morning Coffee Bar"> -->
-          <div class="mc-img mc-img-placeholder">
-            <div class="img-label">Morning Coffee Bar</div>
-          </div>
-          <div class="mc-info">
-            <div class="mc-tag">Morning</div>
-            <div class="mc-name">Morning Coffee Bar</div>
-            <div class="mc-desc">Caribbean blends &amp; cold brew</div>
-            <div class="mc-price">From $5</div>
-          </div>
-        </div>
-
-        <div class="mc">
-          <div class="mc-img mc-img-placeholder">
-            <div class="img-label">Oxtail &amp; Rice</div>
-          </div>
+          <img class="mc-img" src="images/oxtail-plate.jpg" alt="Oxtail Plate" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Oxtail Plate</div></div>
           <div class="mc-info">
             <div class="mc-tag">Classic</div>
-            <div class="mc-name">Oxtail &amp; Rice</div>
-            <div class="mc-desc">Slow-braised, butter beans</div>
+            <div class="mc-name">Oxtail Plate</div>
+            <div class="mc-desc">Slow-braised, mac &amp; veggies</div>
             <div class="mc-price">$22</div>
           </div>
         </div>
 
         <div class="mc">
-          <div class="mc-img mc-img-placeholder">
-            <div class="img-label">Curry Goat</div>
+          <img class="mc-img" src="images/salmon-mac.jpg" alt="Salmon Mac" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Salmon Mac</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Chef's Pick</div>
+            <div class="mc-name">Salmon Mac</div>
+            <div class="mc-desc">Pan-seared salmon over baked mac</div>
+            <div class="mc-price">$20</div>
           </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/fried-fish-board.jpg" alt="Fried Fish Board" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Fried Fish Board</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Catch of the Day</div>
+            <div class="mc-name">Fried Fish Board</div>
+            <div class="mc-desc">Crispy, seasoned, with fries</div>
+            <div class="mc-price">$19</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/salmon-lobster-mac.jpg" alt="Salmon Lobster Mac" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Salmon Lobster Mac</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Premium</div>
+            <div class="mc-name">Salmon Lobster Mac</div>
+            <div class="mc-desc">Surf &amp; soul on a plate</div>
+            <div class="mc-price">$26</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/curry-chickpeas.jpg" alt="Curry Chickpeas" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Curry Chickpeas</div></div>
           <div class="mc-info">
             <div class="mc-tag">Island Favorite</div>
-            <div class="mc-name">Curry Goat</div>
+            <div class="mc-name">Curry Chickpeas</div>
             <div class="mc-desc">Scotch bonnet, coconut milk</div>
-            <div class="mc-price">$20</div>
+            <div class="mc-price">$14</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/shrimp-pasta.jpg" alt="Shrimp Pasta" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Shrimp Pasta</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Bar Menu</div>
+            <div class="mc-name">Shrimp Pasta</div>
+            <div class="mc-desc">Creamy island-spiced sauce</div>
+            <div class="mc-price">$19</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/chocolate-lava-cake.jpg" alt="Chocolate Lava Cake" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Chocolate Lava Cake</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Dessert</div>
+            <div class="mc-name">Chocolate Lava Cake</div>
+            <div class="mc-desc">Warm, gooey &amp; decadent</div>
+            <div class="mc-price">$10</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/bread-pudding.jpg" alt="Bread Pudding" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Bread Pudding</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Dessert</div>
+            <div class="mc-name">Bread Pudding</div>
+            <div class="mc-desc">Caramel drizzle, classic comfort</div>
+            <div class="mc-price">$9</div>
           </div>
         </div>
 
@@ -197,7 +227,7 @@
 
         <div class="ev">
           <div class="ev-date">
-            <span class="ev-badge">May 17</span>
+            <span class="ev-badge">Sep 6</span>
             <span class="ev-mo">Saturday</span>
           </div>
           <div class="ev-title">Live Reggae Night</div>
@@ -207,7 +237,7 @@
 
         <div class="ev">
           <div class="ev-date">
-            <span class="ev-badge">May 25</span>
+            <span class="ev-badge">Sep 14</span>
             <span class="ev-mo">Sunday</span>
           </div>
           <div class="ev-title">Caribbean Brunch Special</div>
@@ -217,7 +247,7 @@
 
         <div class="ev">
           <div class="ev-date">
-            <span class="ev-badge">Jun 7</span>
+            <span class="ev-badge">Sep 27</span>
             <span class="ev-mo">Saturday</span>
           </div>
           <div class="ev-title">Date Night · Private Dining</div>
@@ -237,8 +267,14 @@
         <p class="lbl">Reservations &amp; Catering</p>
         <h2>Make It Your Moment</h2>
         <p class="body-txt">Reserve a table, book a private party, or inquire about catering.</p>
+        <div class="book-contact">
+          <p><a href="tel:+17182102529">(718) 210-2529</a></p>
+          <p><a href="mailto:bleunukbk@gmail.com">bleunukbk@gmail.com</a></p>
+          <p>1150 Nostrand Ave, Brooklyn, NY</p>
+        </div>
       </div>
-      <form class="book-form" id="bookForm" novalidate>
+      <!-- Formspree endpoint — replace YOURFORMID with your actual Formspree form ID -->
+      <form class="book-form" id="bookForm" action="https://formspree.io/f/YOURFORMID" method="POST" novalidate>
         <div class="fg">
           <label for="name">Full Name</label>
           <input class="inp" id="name" name="name" type="text" placeholder="Your name" required/>
@@ -290,17 +326,17 @@
       <h2>@BleuNukBK</h2>
       <p class="body-txt">See what's fresh, what's popping, and who's in the building.</p>
       <div class="soc-grid">
-        <div class="soc-tile">
-          <div class="img-label">Live Night</div>
+        <div class="soc-tile" style="background-image:url('images/salmon-mac.jpg')">
+          <div class="img-label">Tonight's Special</div>
         </div>
-        <div class="soc-tile">
-          <div class="img-label">Today's Special</div>
+        <div class="soc-tile" style="background-image:url('images/jerk-chicken-platter.jpg')">
+          <div class="img-label">Signature Dish</div>
         </div>
-        <div class="soc-tile">
-          <div class="img-label">Cocktail Hour</div>
-        </div>
-        <div class="soc-tile">
+        <div class="soc-tile" style="background-image:url('images/oxtail-plate.jpg')">
           <div class="img-label">Weekend Vibes</div>
+        </div>
+        <div class="soc-tile" style="background-image:url('images/bread-pudding-bday.jpg')">
+          <div class="img-label">Special Occasions</div>
         </div>
       </div>
       <div class="follow-row">
