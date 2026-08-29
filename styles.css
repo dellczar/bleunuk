@@ -141,43 +141,90 @@ img { display: block; width: 100%; height: 100%; object-fit: cover; }
 /* ── HERO ── */
 .hero {
   position: relative;
+  height: 100vh;
   min-height: 560px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: flex-start;
   overflow: hidden;
 }
 
-.hero-bg {
+/* video layer */
+.hero-media {
   position: absolute;
   inset: 0;
+  z-index: 0;
 }
 
-.hero-placeholder {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #1a0a2e 0%, #0d1f4a 50%, #2a0a0a 100%);
-}
-
-/* when a real photo is swapped in: */
-.hero-bg img {
+.hero-video {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* shown when video is absent / not loaded */
+.hero-video-fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #07111F 0%, #0D1F4A 50%, #1a0d05 100%);
+  z-index: -1;
+}
+
+/* hide fallback once video is playing */
+.hero-video:not([src="images/hero.mp4"]) ~ .hero-video-fallback,
+.hero-video[src=""] ~ .hero-video-fallback {
+  display: block;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(13,31,74,.92) 0%, rgba(13,31,74,.3) 55%, transparent 100%);
+  z-index: 1;
+  background:
+    linear-gradient(to right, rgba(7,17,31,.88) 0%, rgba(7,17,31,.4) 60%, transparent 100%),
+    linear-gradient(to top, rgba(7,17,31,.6) 0%, transparent 50%);
 }
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   padding: 60px 20px 56px;
   max-width: 1140px;
   margin: 0 auto;
   width: 100%;
+}
+
+/* scroll hint arrow */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounceY 2s infinite;
+}
+
+.hero-scroll-hint span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-right: 2px solid rgba(201,168,76,.5);
+  border-bottom: 2px solid rgba(201,168,76,.5);
+  transform: rotate(45deg);
+}
+
+@keyframes bounceY {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
 }
 
 .hero-content h1 {
@@ -639,6 +686,24 @@ textarea.inp { resize: vertical; min-height: 90px; }
   border-radius: 4px;
 }
 
+/* ── BOOKING CONTACT ── */
+.book-contact {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--navy);
+}
+
+.book-contact a {
+  color: var(--navy);
+  font-weight: 500;
+  transition: color .2s;
+}
+
+.book-contact a:hover { color: var(--gold); }
+
 /* ── SOCIAL ── */
 .soc-grid {
   display: grid;
@@ -648,19 +713,35 @@ textarea.inp { resize: vertical; min-height: 90px; }
 }
 
 .soc-tile {
-  height: 120px;
+  height: 160px;
   border-radius: 8px;
   background: linear-gradient(135deg, var(--navy) 0%, #1a3170 100%);
+  background-size: cover;
+  background-position: center;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   padding-bottom: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: opacity .2s;
+  transition: transform .3s, opacity .2s;
+  position: relative;
 }
 
-.soc-tile:hover { opacity: .85; }
+.soc-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(7,17,31,.65) 0%, transparent 60%);
+  border-radius: 8px;
+}
+
+.soc-tile:hover { transform: scale(1.02); opacity: .92; }
+
+.soc-tile .img-label {
+  position: relative;
+  z-index: 1;
+}
 
 .follow-row {
   display: flex;
