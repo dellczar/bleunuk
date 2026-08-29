@@ -34,12 +34,14 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-media">
-      <!-- Swap src with your actual video file when ready, e.g. images/hero.mp4 -->
-      <video class="hero-video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
+      <!-- Static hero image — swap for video when ready -->
+      <img class="hero-img" src="images/chicken-waffles.jpg" alt="Bleu Nuk BK — Chicken &amp; Waffles at the bar">
+      <!-- Video hero: uncomment below and remove the img tag above once you have hero.mp4 -->
+      <!--
+      <video class="hero-video" autoplay muted loop playsinline poster="images/chicken-waffles.jpg">
         <source src="images/hero.mp4" type="video/mp4">
-        <!-- Fallback image if video not available -->
       </video>
-      <div class="hero-video-fallback"></div>
+      -->
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content container">
@@ -95,10 +97,8 @@
         </div>
       </div>
       <div class="about-img-wrap">
-        <!-- Swap for real interior photo: <img class="about-img" src="images/interior.jpg" alt="Bleu Nuk BK Interior"> -->
-        <div class="about-img about-img-placeholder">
-          <div class="img-label">Interior Photo</div>
-        </div>
+        <img class="about-img" src="images/beer-interior.jpg" alt="Bleu Nuk BK dining room — brick walls, blue banquette seating" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="about-img about-img-placeholder" style="display:none"><div class="img-label">Interior Photo</div></div>
       </div>
     </div>
   </section>
@@ -213,6 +213,155 @@
 
       </div>
       <a href="#book" class="view-btn">View Full Menu</a>
+
+      <!-- BRUNCH -->
+      <p class="lbl" style="margin-top:56px">Weekend Brunch</p>
+      <h2>Rise &amp; Vibe</h2>
+      <p class="body-txt">Sat &amp; Sun · 11am–3pm · Dine-in only</p>
+      <div class="menu-grid">
+
+        <div class="mc">
+          <img class="mc-img" src="images/chicken-waffles.jpg" alt="Chicken &amp; Waffles" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Chicken &amp; Waffles</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Brunch Staple</div>
+            <div class="mc-name">Chicken &amp; Waffles</div>
+            <div class="mc-desc">Crispy chicken, maple syrup, mimosa</div>
+            <div class="mc-price">$18</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/french-toast.jpg" alt="Island French Toast" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Island French Toast</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Sweet &amp; Savory</div>
+            <div class="mc-name">Island French Toast</div>
+            <div class="mc-desc">Berries, powdered sugar, warm syrup</div>
+            <div class="mc-price">$16</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/chicken-grits.jpg" alt="Chicken &amp; Grits" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Chicken &amp; Grits</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Soul Comfort</div>
+            <div class="mc-name">Chicken &amp; Grits</div>
+            <div class="mc-desc">Fried tenders over cheesy grits</div>
+            <div class="mc-price">$17</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/breakfast-sandwich.jpg" alt="Breakfast Sandwich" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Breakfast Sandwich</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">On the Go</div>
+            <div class="mc-name">Breakfast Sandwich</div>
+            <div class="mc-desc">Bacon, egg &amp; cheese on a croissant</div>
+            <div class="mc-price">$14</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/accra-fritters.jpg" alt="Accra Fritters" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Accra Fritters</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Appetizer</div>
+            <div class="mc-name">Accra Fritters</div>
+            <div class="mc-desc">Saltfish fritters, pepper dipping sauce</div>
+            <div class="mc-price">$12</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/fish-tacos.jpg" alt="Fish Tacos" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Fish Tacos</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Brunch Favorite</div>
+            <div class="mc-name">Fish Tacos</div>
+            <div class="mc-desc">Crispy fish, slaw, avocado crema</div>
+            <div class="mc-price">$16</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DRINKS -->
+      <p class="lbl" style="margin-top:56px">Cocktails &amp; Drinks</p>
+      <h2>Sip the Vibe</h2>
+      <p class="body-txt">Craft cocktails, mocktails, and the signature Bleu Flight.</p>
+      <div class="menu-grid">
+
+        <div class="mc">
+          <img class="mc-img" src="images/bleu-flight.jpg" alt="Bleu Flight Mimosa" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Bleu Flight</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Signature</div>
+            <div class="mc-name">Bleu Flight</div>
+            <div class="mc-desc">Three mimosa flavors in one flight</div>
+            <div class="mc-price">$11.50</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/bleu-violet.jpg" alt="Bleu Violet Cocktail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Bleu Violet</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Craft Cocktail</div>
+            <div class="mc-name">Bleu Violet</div>
+            <div class="mc-desc">Butterfly pea flower, citrus &amp; prosecco</div>
+            <div class="mc-price">$14</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/berry-smash.jpg" alt="Berry Smash" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Berry Smash</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">House Cocktail</div>
+            <div class="mc-name">Berry Smash</div>
+            <div class="mc-desc">Muddled berries, lemon &amp; mint</div>
+            <div class="mc-price">$13</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/tropical-mocktail.jpg" alt="Tropical Mocktail" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Tropical Mocktail</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Mocktail</div>
+            <div class="mc-name">Tropical Mocktail</div>
+            <div class="mc-desc">Mango, passion fruit &amp; island soda</div>
+            <div class="mc-price">$8</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/frozen-margs.jpg" alt="Frozen Margs" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Frozen Margarita</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Frozen</div>
+            <div class="mc-name">Frozen Margarita</div>
+            <div class="mc-desc">Pineapple blend, ice cream float</div>
+            <div class="mc-price">$14</div>
+          </div>
+        </div>
+
+        <div class="mc">
+          <img class="mc-img" src="images/matcha-latte.jpg" alt="Matcha Latte" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="mc-img mc-img-placeholder" style="display:none"><div class="img-label">Matcha Latte</div></div>
+          <div class="mc-info">
+            <div class="mc-tag">Coffee Bar</div>
+            <div class="mc-name">Matcha Latte</div>
+            <div class="mc-desc">House oat milk, foamed &amp; serene</div>
+            <div class="mc-price">$7</div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
   <div class="gold-line"></div>
@@ -326,17 +475,17 @@
       <h2>@BleuNukBK</h2>
       <p class="body-txt">See what's fresh, what's popping, and who's in the building.</p>
       <div class="soc-grid">
+        <div class="soc-tile" style="background-image:url('images/bleu-flight.jpg')">
+          <div class="img-label">The Bleu Flight</div>
+        </div>
         <div class="soc-tile" style="background-image:url('images/salmon-mac.jpg')">
           <div class="img-label">Tonight's Special</div>
         </div>
-        <div class="soc-tile" style="background-image:url('images/jerk-chicken-platter.jpg')">
-          <div class="img-label">Signature Dish</div>
+        <div class="soc-tile" style="background-image:url('images/bleu-violet.jpg')">
+          <div class="img-label">Craft Cocktails</div>
         </div>
-        <div class="soc-tile" style="background-image:url('images/oxtail-plate.jpg')">
-          <div class="img-label">Weekend Vibes</div>
-        </div>
-        <div class="soc-tile" style="background-image:url('images/bread-pudding-bday.jpg')">
-          <div class="img-label">Special Occasions</div>
+        <div class="soc-tile" style="background-image:url('images/chicken-waffles.jpg')">
+          <div class="img-label">Weekend Brunch</div>
         </div>
       </div>
       <div class="follow-row">
