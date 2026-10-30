@@ -5,6 +5,13 @@ if (heroImg) {
   else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
 }
 
+// Hero video slow playback
+const heroVid = document.querySelector('.hero-video');
+if (heroVid) {
+  heroVid.addEventListener('loadedmetadata', () => { heroVid.playbackRate = 0.6; });
+  if (heroVid.readyState >= 1) heroVid.playbackRate = 0.6;
+}
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
