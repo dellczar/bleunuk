@@ -84,6 +84,35 @@ if (dateInput) {
   dateInput.min = today;
 }
 
+// Lightbox for menu images
+const lb = document.createElement('div');
+lb.id = 'lightbox';
+lb.innerHTML = '<div class="lb-backdrop"></div><img class="lb-img" alt=""><button class="lb-close" aria-label="Close">&times;</button>';
+document.body.appendChild(lb);
+
+const lbImg = lb.querySelector('.lb-img');
+
+function openLightbox(src, alt) {
+  lbImg.src = src;
+  lbImg.alt = alt;
+  lb.classList.add('lb-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lb.classList.remove('lb-open');
+  document.body.style.overflow = '';
+}
+
+document.querySelectorAll('.mc-img:not(.mc-img-placeholder)').forEach(img => {
+  img.style.cursor = 'zoom-in';
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
+
+lb.querySelector('.lb-backdrop').addEventListener('click', closeLightbox);
+lb.querySelector('.lb-close').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
 // Video error fallback
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {

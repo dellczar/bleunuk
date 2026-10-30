@@ -1061,3 +1061,69 @@ textarea.inp { resize: vertical; min-height: 90px; }
   .soc-grid { grid-template-columns: 1fr 1fr; }
   .soc-tile { height: 170px; }
 }
+
+/* ── LIGHTBOX ── */
+#lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox.lb-open { display: flex; }
+
+.lb-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(7,17,31,.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: lbFadeIn .2s ease;
+}
+
+.lb-img {
+  position: relative;
+  z-index: 1;
+  max-width: 92vw;
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,.6);
+  animation: lbZoomIn .25s ease;
+}
+
+.lb-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 2;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+
+.lb-close:hover { background: rgba(255,255,255,.25); }
+
+@keyframes lbFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes lbZoomIn {
+  from { transform: scale(.92); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
