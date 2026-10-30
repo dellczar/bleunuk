@@ -34,14 +34,11 @@
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-media">
-      <!-- Static hero image — swap for video when ready -->
-      <img class="hero-img" src="images/PHOTO-2026-06-13-22-18-11%2040.jpg" alt="Bleu Nuk BK — Chicken &amp; Waffles at the bar">
-      <!-- Video hero: uncomment below and remove the img tag above once you have hero.mp4 -->
-      <!--
-      <video class="hero-video" autoplay muted loop playsinline poster="images/PHOTO-2026-06-13-22-18-11%2040.jpg">
+      <video class="hero-video" autoplay muted loop playsinline poster="images/hero-poster.jpg">
         <source src="images/hero.mp4" type="video/mp4">
       </video>
-      -->
+      <!-- Fallback if video fails to load -->
+      <div class="hero-video-fallback"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content container">
