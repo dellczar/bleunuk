@@ -1,3 +1,10 @@
+// Hero image Ken Burns effect
+const heroImg = document.querySelector('.hero-img');
+if (heroImg) {
+  if (heroImg.complete) heroImg.classList.add('loaded');
+  else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+}
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
@@ -20,77 +27,61 @@ navToggle.addEventListener('click', () => {
 navLinks.querySelectorAll('a').forEach(a => {
   a.addEventListener('click', () => {
     navLinks.classList.remove('open');
-    navToggle.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    const spans = navToggle.querySelectorAll('span');
+    spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
   });
 });
 
 // Sticky nav shadow on scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
-  nav.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,.35)' : '';
+  if (window.scrollY > 10) nav.style.boxShadow = '0 2px 24px rgba(0,0,0,.4)';
+  else nav.style.boxShadow = 'none';
 }, { passive: true });
 
-// Booking form — Formspree AJAX submission
-document.getElementById('bookForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const success = document.getElementById('formSuccess');
+// Booking form — Formspree AJAX
+const bookForm = document.getElementById('bookForm');
+const formSuccess = document.getElementById('formSuccess');
 
-  // Client-side required check
-  const required = form.querySelectorAll('[required]');
-  let valid = true;
-  required.forEach(el => {
-    el.style.borderColor = '';
-    if (!el.value.trim()) {
-      el.style.borderColor = '#e53935';
-      valid = false;
+if (bookForm) {
+  bookForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = bookForm.querySelector('.sub-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch(bookForm.action, {
+        method: 'POST',
+        body: new FormData(bookForm),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        formSuccess.hidden = false;
+        bookForm.reset();
+        btn.textContent = 'Sent ✓';
+      } else {
+        btn.textContent = 'Error — try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Error — try again';
+      btn.disabled = false;
     }
   });
-  if (!valid) return;
+}
 
-  const btn = form.querySelector('.sub-btn');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
-
-  try {
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: new FormData(form),
-      headers: { Accept: 'application/json' }
-    });
-
-    if (res.ok) {
-      form.reset();
-      success.hidden = false;
-      setTimeout(() => { success.hidden = true; }, 6000);
-    } else {
-      success.textContent = 'Something went wrong — please call us at (718) 210-2529.';
-      success.style.background = '#fdecea';
-      success.style.color = '#c62828';
-      success.hidden = false;
-    }
-  } catch {
-    success.textContent = 'Network error — please call us at (718) 210-2529.';
-    success.style.background = '#fdecea';
-    success.style.color = '#c62828';
-    success.hidden = false;
-  }
-
-  btn.textContent = 'Send Request';
-  btn.disabled = false;
-});
-
-// Set date input min to today
+// Set minimum date to today
 const dateInput = document.getElementById('date');
 if (dateInput) {
   const today = new Date().toISOString().split('T')[0];
   dateInput.min = today;
 }
 
-// Graceful video hero — hide video element if file doesn't load
+// Video error fallback
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {
   heroVideo.addEventListener('error', () => {
-    heroVideo.style.display = 'none';
+    const fallback = heroVideo.closest('.hero-media').querySelector('.hero-video-fallback');
+    if (fallback) fallback.style.display = 'block';
   });
 }
