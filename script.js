@@ -1,3 +1,10 @@
+// Hero image Ken Burns effect
+const heroImg = document.querySelector('.hero-img');
+if (heroImg) {
+  if (heroImg.complete) heroImg.classList.add('loaded');
+  else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
+}
+
 // Mobile nav toggle
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.getElementById('navLinks');
