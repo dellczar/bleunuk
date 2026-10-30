@@ -8,8 +8,8 @@ if (heroImg) {
 // Hero video slow playback
 const heroVid = document.querySelector('.hero-video');
 if (heroVid) {
-  heroVid.addEventListener('loadedmetadata', () => { heroVid.playbackRate = 0.6; });
-  if (heroVid.readyState >= 1) heroVid.playbackRate = 0.6;
+  heroVid.addEventListener('loadedmetadata', () => { heroVid.playbackRate = 0.35; });
+  if (heroVid.readyState >= 1) heroVid.playbackRate = 0.35;
 }
 
 // Mobile nav toggle
