@@ -5,23 +5,27 @@ if (heroImg) {
   else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
 }
 
-// Hero video — force autoplay + slow playback (handles iOS Low Power Mode)
+// All videos — force autoplay on every video on the page
+const allVids = document.querySelectorAll('video');
+
+function tryPlayAll() {
+  allVids.forEach(v => v.play().catch(() => {}));
+}
+
+// Unlock all videos on first user interaction (required by iOS strict mode)
+['touchstart', 'click', 'pointerdown'].forEach(evt => {
+  document.addEventListener(evt, tryPlayAll, { once: true, passive: true });
+});
+
+// Hero video — slow playback + canplay trigger
 const heroVid = document.querySelector('.hero-video');
 if (heroVid) {
   const setRate = () => { heroVid.playbackRate = 0.75; };
-
-  const tryPlay = () => {
-    heroVid.play().then(setRate).catch(() => {});
-  };
-
   heroVid.addEventListener('loadedmetadata', setRate);
-  heroVid.addEventListener('canplay', tryPlay, { once: true });
-
-  if (heroVid.readyState >= 3) tryPlay();
-
-  // Fallback: first touch unlocks autoplay on strict browsers
-  document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-  document.addEventListener('click', tryPlay, { once: true });
+  heroVid.addEventListener('canplay', () => {
+    heroVid.play().then(setRate).catch(() => {});
+  }, { once: true });
+  if (heroVid.readyState >= 3) heroVid.play().then(setRate).catch(() => {});
 }
 
 // Mobile nav toggle
@@ -134,9 +138,14 @@ if (heroVideo) {
   });
 }
 
-// Gallery videos — play when scrolled into view, pause when out
+// Gallery videos — autoplay immediately + resume on scroll into view
 const galleryVids = document.querySelectorAll('.gv-item video');
 if (galleryVids.length) {
+  galleryVids.forEach(v => {
+    v.play().catch(() => {});
+    v.addEventListener('canplay', () => v.play().catch(() => {}), { once: true });
+  });
+
   const vidObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -145,7 +154,7 @@ if (galleryVids.length) {
         entry.target.pause();
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.1 });
   galleryVids.forEach(v => vidObserver.observe(v));
 }
 
