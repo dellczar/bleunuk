@@ -5,11 +5,23 @@ if (heroImg) {
   else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
 }
 
-// Hero video slow playback
+// Hero video — force autoplay + slow playback (handles iOS Low Power Mode)
 const heroVid = document.querySelector('.hero-video');
 if (heroVid) {
-  heroVid.addEventListener('loadedmetadata', () => { heroVid.playbackRate = 0.75; });
-  if (heroVid.readyState >= 1) heroVid.playbackRate = 0.75;
+  const setRate = () => { heroVid.playbackRate = 0.75; };
+
+  const tryPlay = () => {
+    heroVid.play().then(setRate).catch(() => {});
+  };
+
+  heroVid.addEventListener('loadedmetadata', setRate);
+  heroVid.addEventListener('canplay', tryPlay, { once: true });
+
+  if (heroVid.readyState >= 3) tryPlay();
+
+  // Fallback: first touch unlocks autoplay on strict browsers
+  document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+  document.addEventListener('click', tryPlay, { once: true });
 }
 
 // Mobile nav toggle
