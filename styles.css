@@ -1180,3 +1180,38 @@ textarea.inp { resize: vertical; min-height: 90px; }
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ── HOURS ───────────────────────────────────────── */
+.hours-list {
+  list-style: none;
+  margin: 10px 0 8px;
+  padding: 0;
+}
+
+.hours-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(201,168,76,.18);
+  font-size: .95rem;
+  color: var(--cream);
+}
+
+.hours-list li span:first-child { color: var(--gold); font-weight: 500; }
+
+.hours-note {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* ── MAP ─────────────────────────────────────────── */
+.map-wrap {
+  margin-top: 32px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(13,31,74,.12);
+}
+
+.map-wrap iframe { display: block; }
