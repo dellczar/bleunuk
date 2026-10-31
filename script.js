@@ -133,3 +133,23 @@ if (heroVideo) {
     if (fallback) fallback.style.display = 'block';
   });
 }
+
+// Gallery videos — play when scrolled into view, pause when out
+const galleryVids = document.querySelectorAll('.gv-item video');
+if (galleryVids.length) {
+  const vidObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.play().catch(() => {});
+      } else {
+        entry.target.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+  galleryVids.forEach(v => vidObserver.observe(v));
+}
+
+// Gallery photos — lightbox support
+document.querySelectorAll('.gp-img').forEach(img => {
+  img.addEventListener('click', () => openLightbox(img.src, img.alt));
+});
