@@ -5,27 +5,32 @@ if (heroImg) {
   else heroImg.addEventListener('load', () => heroImg.classList.add('loaded'));
 }
 
-// All videos — force autoplay on every video on the page
-const allVids = document.querySelectorAll('video');
+// All videos — force autoplay, keep retrying until playing
+const allVids = Array.from(document.querySelectorAll('video'));
 
 function tryPlayAll() {
-  allVids.forEach(v => v.play().catch(() => {}));
+  allVids.forEach(v => { if (v.paused) v.play().catch(() => {}); });
 }
 
-// Unlock all videos on first user interaction (required by iOS strict mode)
-['touchstart', 'click', 'pointerdown'].forEach(evt => {
-  document.addEventListener(evt, tryPlayAll, { once: true, passive: true });
+// Retry every 800ms until every video is playing, then stop
+const playRetry = setInterval(() => {
+  const stillPaused = allVids.filter(v => v.paused);
+  if (!stillPaused.length) { clearInterval(playRetry); return; }
+  stillPaused.forEach(v => v.play().catch(() => {}));
+}, 800);
+
+// Also trigger on any user interaction in case browser needs a gesture
+['touchstart', 'click', 'pointerdown', 'scroll'].forEach(evt => {
+  document.addEventListener(evt, tryPlayAll, { passive: true });
 });
 
-// Hero video — slow playback + canplay trigger
+// Hero video — slow playback
 const heroVid = document.querySelector('.hero-video');
 if (heroVid) {
   const setRate = () => { heroVid.playbackRate = 0.75; };
   heroVid.addEventListener('loadedmetadata', setRate);
-  heroVid.addEventListener('canplay', () => {
-    heroVid.play().then(setRate).catch(() => {});
-  }, { once: true });
-  if (heroVid.readyState >= 3) heroVid.play().then(setRate).catch(() => {});
+  heroVid.addEventListener('playing', setRate);
+  heroVid.play().then(setRate).catch(() => {});
 }
 
 // Mobile nav toggle
